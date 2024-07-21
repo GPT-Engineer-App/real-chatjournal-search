@@ -1,7 +1,5 @@
-import { Home, MessageSquare, Book, Search as SearchIcon } from "lucide-react";
+import { Home, Search as SearchIcon } from "lucide-react";
 import Index from "./pages/Index.jsx";
-import Chat from "./pages/Chat.jsx";
-import Journal from "./pages/Journal.jsx";
 import SearchPage from "./routes/search/+page.svelte";
 
 /**
@@ -13,18 +11,6 @@ export const navItems = [
     to: "/",
     icon: <Home className="h-4 w-4" />,
     page: <Index />,
-  },
-  {
-    title: "Chat",
-    to: "/chat",
-    icon: <MessageSquare className="h-4 w-4" />,
-    page: <Chat />,
-  },
-  {
-    title: "Journal",
-    to: "/journal",
-    icon: <Book className="h-4 w-4" />,
-    page: <Journal />,
   },
   {
     title: "Search",
