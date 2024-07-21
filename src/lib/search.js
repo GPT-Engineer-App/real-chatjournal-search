@@ -3,6 +3,10 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Supabase URL or Anon Key is missing. Please check your environment variables.')
+}
+
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 export async function searchConversations(query, filters = {}, page = 1, pageSize = 10) {
@@ -32,10 +36,10 @@ export async function searchConversations(query, filters = {}, page = 1, pageSiz
     }
 
     return { 
-      results: data, 
-      totalCount: count,
+      results: data || [], 
+      totalCount: count || 0,
       currentPage: page,
-      totalPages: Math.ceil(count / pageSize)
+      totalPages: Math.ceil((count || 0) / pageSize)
     }
   } catch (error) {
     console.error('Error searching conversations:', error)
